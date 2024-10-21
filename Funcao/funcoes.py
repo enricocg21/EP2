@@ -54,3 +54,17 @@ def posiciona_frota(frota):
                 tabuleiro[linha][coluna] = 1
     
     return tabuleiro
+
+# Questão 5:
+
+def afundados(dicio, tabuleiro):
+    resp = 0
+    for chave,valor in dicio.items():
+        for navio in valor:
+            i = 0
+            for coordenadas in navio:
+                if tabuleiro[coordenadas[0]][coordenadas[1]] == 'X':
+                    i += 1
+            if i == len(navio):
+                resp += 1
+    return resp
