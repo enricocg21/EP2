@@ -32,3 +32,25 @@ def faz_jogada(tabuleiro,linha,coluna):
     elif tabuleiro[linha][coluna] == 0:
         tabuleiro[linha][coluna] = '-'
     return tabuleiro
+
+# Questão 4:
+
+def posiciona_frota(frota):
+    tabuleiro = [
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+]
+    for posicao in frota.values():
+        for posicao in posicao:
+            for linha, coluna in posicao:
+                tabuleiro[linha][coluna] = 1
+    
+    return tabuleiro
