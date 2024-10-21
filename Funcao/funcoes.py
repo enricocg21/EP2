@@ -12,7 +12,7 @@ def define_posicoes(linha,coluna,orientacao,tamanho):
         i += 1
     return posicao_inicial
 
-# Questão 2
+# Questão 2:
 
 def preenche_frota(frota, nome_navio, linha, coluna, orientacao, tamanho):
     lista = []
@@ -23,3 +23,12 @@ def preenche_frota(frota, nome_navio, linha, coluna, orientacao, tamanho):
     else:
         frota[nome_navio] = lista
     return frota
+
+# Questão 3:
+
+def faz_jogada(tabuleiro,linha,coluna):
+    if tabuleiro[linha][coluna] == 1:
+        tabuleiro[linha][coluna] = 'X'
+    elif tabuleiro[linha][coluna] == 0:
+        tabuleiro[linha][coluna] = '-'
+    return tabuleiro
