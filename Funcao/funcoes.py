@@ -68,3 +68,23 @@ def afundados(dicio, tabuleiro):
             if i == len(navio):
                 resp += 1
     return resp
+
+# Questão 6:
+
+def posicao_valida(dicio, linha, coluna, orientacao, tamanho):
+    posicoes = define_posicoes(linha,coluna,orientacao,tamanho)
+    for nome,infos in dicio.items():
+        for um_navio in infos:
+            for coordenadas in um_navio:
+                for posicao in posicoes:
+                    if posicao == coordenadas:
+                        return False
+                    for eixo in posicao:
+                        if eixo > 9:
+                            return False
+    for posicao in posicoes:
+        for eixo in posicao:
+            if eixo > 9:
+                return False
+    else:
+        return True
