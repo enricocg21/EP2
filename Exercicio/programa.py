@@ -49,4 +49,73 @@ while i < 10:
 
     i += 1
 
-print(frota)
+frota_oponente = {
+    'porta-aviões': [
+        [[9, 1], [9, 2], [9, 3], [9, 4]]
+    ],
+    'navio-tanque': [
+        [[6, 0], [6, 1], [6, 2]],
+        [[4, 3], [5, 3], [6, 3]]
+    ],
+    'contratorpedeiro': [
+        [[1, 6], [1, 7]],
+        [[0, 5], [1, 5]],
+        [[3, 6], [3, 7]]
+    ],
+    'submarino': [
+        [[2, 7]],
+        [[0, 6]],
+        [[9, 7]],
+        [[7, 6]]
+    ]
+}
+
+from funcoes import posiciona_frota
+from funcoes import monta_tabuleiros
+from funcoes import faz_jogada
+from funcoes import afundados
+
+posicao_oponente = posiciona_frota(frota_oponente)
+
+posicao_jogador = posiciona_frota(frota)
+
+jogando = True
+
+while jogando == True:
+
+    tabuleiros = monta_tabuleiros(posicao_jogador, posicao_oponente)
+    
+
+    print(tabuleiros)
+
+
+    lista_linhas = []
+    lista_colunas = []
+
+    resposta = 0
+    while resposta == 0:
+        linha = int(input("Qual linha você quer atacar? "))
+        while 0 > linha > 9:
+            print("Linha inválida!")
+            linha = int(input("Qual linha você quer atacar? "))
+        
+        coluna = int(input("Qual coluna você quer atacar? "))
+        while 0 > coluna > 9:
+            print("Coluna inválida!")
+            coluna = int(input("Qual coluna você quer atacar? "))
+
+        if linha in lista_linhas and coluna in lista_colunas:
+            print(f"A posição linha {linha} e coluna {coluna} já foi informada anteriormente!")
+            resposta = 0
+        else:
+            resposta = 1
+
+    lista_linhas.append(linha)
+    lista_colunas.append(coluna)
+    
+    tabuleiro = faz_jogada(posicao_oponente, linha, coluna)
+    afundado = afundados(frota_oponente, tabuleiro)
+
+    if afundado == 10:
+        print("Parabéns! Você derrubou todos os navios do seu oponente!")
+        jogando = False
