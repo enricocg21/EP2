@@ -81,6 +81,8 @@ posicao_jogador = posiciona_frota(frota)
 
 jogando = True
 
+lista_coordenadas = []
+
 while jogando == True:
 
     tabuleiros = monta_tabuleiros(posicao_jogador, posicao_oponente)
@@ -88,30 +90,29 @@ while jogando == True:
 
     print(tabuleiros)
 
-
-    lista_linhas = []
-    lista_colunas = []
-
-    resposta = 0
-    while resposta == 0:
+    resposta = False
+    while resposta == False:
         linha = int(input("Qual linha você quer atacar? "))
-        while 0 > linha > 9:
+        while linha > 9 or linha < 0:
             print("Linha inválida!")
             linha = int(input("Qual linha você quer atacar? "))
         
         coluna = int(input("Qual coluna você quer atacar? "))
-        while 0 > coluna > 9:
+        while coluna > 9 or coluna < 0:
             print("Coluna inválida!")
             coluna = int(input("Qual coluna você quer atacar? "))
 
-        if linha in lista_linhas and coluna in lista_colunas:
-            print(f"A posição linha {linha} e coluna {coluna} já foi informada anteriormente!")
-            resposta = 0
-        else:
-            resposta = 1
+        coordenada = [{linha}, {coluna}]
 
-    lista_linhas.append(linha)
-    lista_colunas.append(coluna)
+        if coordenada in lista_coordenadas:
+            print(f"A posição linha {linha} e coluna {coluna} já foi informada anteriormente!")
+            resposta = False
+        else:
+            resposta = True
+        
+
+    lista_coordenadas.append(coordenada)
+
     
     tabuleiro = faz_jogada(posicao_oponente, linha, coluna)
     afundado = afundados(frota_oponente, tabuleiro)
