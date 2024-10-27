@@ -49,6 +49,8 @@ while i < 10:
 
     i += 1
 
+#Questão 8 e 9
+
 frota_oponente = {
     'porta-aviões': [
         [[9, 1], [9, 2], [9, 3], [9, 4]]
@@ -74,6 +76,8 @@ from funcoes import posiciona_frota
 from funcoes import monta_tabuleiros
 from funcoes import faz_jogada
 from funcoes import afundados
+import random
+random.seed(2)
 
 posicao_oponente = posiciona_frota(frota_oponente)
 
@@ -82,6 +86,7 @@ posicao_jogador = posiciona_frota(frota)
 jogando = True
 
 lista_coordenadas = []
+lista_coordenadas_opo = []
 
 while jogando == True:
 
@@ -120,3 +125,26 @@ while jogando == True:
     if afundado == 10:
         print("Parabéns! Você derrubou todos os navios do seu oponente!")
         jogando = False
+    else:
+        verificacao = False
+        while not verificacao:
+            coluna = random.randint(0, 9)
+            linha = random.randint(0, 9)
+            coordenada2 = [linha, coluna]
+
+            if coordenada2 in lista_coordenadas_opo:
+                verificacao = False
+            else:
+                print(f"Seu oponente está atacando na linha {linha} e coluna {coluna}")
+                lista_coordenadas_opo.append(coordenada2)
+                verificacao = True
+
+        tabuleiro = faz_jogada(posicao_jogador, linha, coluna)
+
+        afundado_opo = afundados(frota, tabuleiro)
+        if afundado_opo == 10:
+            print("Xi! O oponente derrubou toda a sua frota =(")
+            jogando = False
+                
+
+
