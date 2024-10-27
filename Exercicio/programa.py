@@ -127,24 +127,25 @@ while jogando == True:
         jogando = False
     else:
         verificacao = False
-        while not verificacao:
+        while verificacao == False:
             coluna = random.randint(0, 9)
             linha = random.randint(0, 9)
             coordenada2 = [linha, coluna]
 
-            if coordenada2 in lista_coordenadas_opo:
-                verificacao = False
-            else:
-                print(f"Seu oponente está atacando na linha {linha} e coluna {coluna}")
+            if coordenada2 not in lista_coordenadas_opo:
                 lista_coordenadas_opo.append(coordenada2)
                 verificacao = True
+        print(f"Seu oponente está atacando na linha {linha} e coluna {coluna}")
+
 
         tabuleiro = faz_jogada(posicao_jogador, linha, coluna)
-
         afundado_opo = afundados(frota, tabuleiro)
+
         if afundado_opo == 10:
             print("Xi! O oponente derrubou toda a sua frota =(")
             jogando = False
+        else:
+            print(monta_tabuleiros(posicao_jogador, posicao_oponente))
                 
 
 
